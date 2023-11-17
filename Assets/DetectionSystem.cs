@@ -28,8 +28,13 @@ public class DetectionSystem : MonoBehaviour
     public float DetectLeaveDuration = 2.0f;
     private IEnumerator coroutine;
 
-    public UnityEvent DetectedTagWithoutLOS;
-    public UnityEvent DetectedTagWithLOS;
+    [Header("Events to be Run")]
+    public UnityEvent DetectedTagWithoutLineOfSight;
+    public UnityEvent DetectedTagWithLineOfSight;
+    public UnityEvent DetectedLayerWithoutLineOfSight;
+    public UnityEvent DetectedLayerWithLineOfSight;
+    public UnityEvent DetectedGameObjectWithoutLineOfSight;
+    public UnityEvent DetectedGameObjectWithLineOfSight;
 
     // Update is called once per frame
     void Update()
@@ -50,7 +55,7 @@ public class DetectionSystem : MonoBehaviour
                         Debug.Log("Detected Player Tag, LoS not needed.");
                         objectDetected = true;
 
-                        DetectedTagWithoutLOS.Invoke();
+                        DetectedTagWithoutLineOfSight.Invoke();
 
                         ObjectLeavingRange();
                         
@@ -62,7 +67,7 @@ public class DetectionSystem : MonoBehaviour
                         //LineOfSight();
                         objectDetected = true;
 
-                        DetectedTagWithLOS.Invoke();
+                        DetectedTagWithLineOfSight.Invoke();
 
                         ObjectLeavingRange();
                     }
