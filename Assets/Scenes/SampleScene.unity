@@ -328,10 +328,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   DetectLeaveDuration: 2
-  DetectedTagWithoutLOS:
+  DetectedTagWithoutLineOfSight:
     m_PersistentCalls:
       m_Calls: []
-  DetectedTagWithLOS:
+  DetectedTagWithLineOfSight:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 310668551}
@@ -346,6 +346,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  DetectedLayerWithoutLineOfSight:
+    m_PersistentCalls:
+      m_Calls: []
+  DetectedLayerWithLineOfSight:
+    m_PersistentCalls:
+      m_Calls: []
+  DetectedGameObjectWithoutLineOfSight:
+    m_PersistentCalls:
+      m_Calls: []
+  DetectedGameObjectWithLineOfSight:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!135 &310668552
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -751,7 +763,7 @@ GameObject:
   m_Layer: 0
   m_Name: RaycastOrigin
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -877,7 +889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088678675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.87, z: -20.01}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
