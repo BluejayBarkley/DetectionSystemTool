@@ -320,7 +320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectToDetect: {fileID: 2088678675}
   objectDetected: 0
-  _lineOfSightRequired: 1
+  _lineOfSightRequired: 0
   _raycastOrigin: {fileID: 1495894377}
   _detectionMethod: 0
   _tagToDetect: Player

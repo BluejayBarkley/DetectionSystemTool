@@ -60,7 +60,7 @@ public class DetectionSystem : MonoBehaviour
                 {
                     if (_lineOfSightRequired == false)
                     {
-                        Debug.Log("Detected Player Tag, LoS not needed.");
+                        Debug.Log("Detected " + _tagToDetect + " Tag, LoS not needed.");
                         objectDetected = true;
 
                         DetectedTagWithoutLineOfSight.Invoke();
@@ -71,7 +71,7 @@ public class DetectionSystem : MonoBehaviour
 
                     if (_lineOfSightRequired == true)
                     {
-                        Debug.Log("Tag, LoS needed.");
+                        Debug.Log("Detected " + _tagToDetect + " Tag, LoS needed.");
                         //LineOfSight();
                         objectDetected = true;
 
@@ -155,14 +155,14 @@ public class DetectionSystem : MonoBehaviour
     public void LineOfSight()
     {
 
-        Debug.Log("LineOfSight invoked.");
+        //Debug.Log("LineOfSight invoked.");
         
         Vector3 rayStartPos = _raycastOrigin.transform.position;
         //Vector3 rayDirection = gameObject.transform.forward;
 
         if (objectDetected)
         {
-            Debug.Log("LineOfSight objectDetected.");
+            //Debug.Log("LineOfSight objectDetected.");
 
             Vector3 rayDirection = _objectToDetect.transform.position - _raycastOrigin.transform.position;
             Ray ray = new Ray(rayStartPos, rayDirection);
@@ -172,7 +172,7 @@ public class DetectionSystem : MonoBehaviour
 
             if (hitData.transform != null)
             {
-                Debug.Log("Detected Object: " + hitData.transform.gameObject.name);
+                //Debug.Log("Detected Object: " + hitData.transform.gameObject.name);
 
 
                 if (hitData.transform.gameObject.tag == "Player")
