@@ -43,7 +43,7 @@ public class DetectionSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_lineOfSightRequired && objectDetected)
+        if (objectDetected)
         {
             LineOfSight();
         }
@@ -89,6 +89,7 @@ public class DetectionSystem : MonoBehaviour
                     {
                         Debug.Log("Detected Player Layer, LoS not needed.");
                         objectDetected = true;
+                        DetectedLayerWithoutLineOfSight.Invoke();
                         ObjectLeavingRange();
                     }
 
@@ -96,6 +97,7 @@ public class DetectionSystem : MonoBehaviour
                     {
                         Debug.Log("Layer, LoS needed.");
                         objectDetected = true;
+                        DetectedLayerWithLineOfSight.Invoke();
                         ObjectLeavingRange();
                     }
                 }
@@ -108,6 +110,7 @@ public class DetectionSystem : MonoBehaviour
                     {
                         Debug.Log("Detected Player GameObject, LoS not needed.");
                         objectDetected = true;
+                        DetectedGameObjectWithoutLineOfSight.Invoke();
                         ObjectLeavingRange();
                     }
 
@@ -115,6 +118,7 @@ public class DetectionSystem : MonoBehaviour
                     {
                         Debug.Log("GameObject, LoS needed.");
                         objectDetected = true;
+                        DetectedGameObjectWithLineOfSight.Invoke();
                         ObjectLeavingRange();
                     }
                 }
