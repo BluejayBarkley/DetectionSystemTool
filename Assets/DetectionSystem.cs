@@ -43,6 +43,10 @@ public class DetectionSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_lineOfSightRequired && objectDetected)
+        {
+            LineOfSight();
+        }
         
     }
 
