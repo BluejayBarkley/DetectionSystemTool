@@ -33,12 +33,13 @@ public class DetectionSystem : MonoBehaviour
     private IEnumerator coroutine;
 
     [Header("Events to be Run")]
-    public UnityEvent DetectedTagWithoutLineOfSight;
-    public UnityEvent DetectedTagWithLineOfSight;
-    public UnityEvent DetectedLayerWithoutLineOfSight;
-    public UnityEvent DetectedLayerWithLineOfSight;
-    public UnityEvent DetectedGameObjectWithoutLineOfSight;
-    public UnityEvent DetectedGameObjectWithLineOfSight;
+    public UnityEvent DetectedWithoutLineOfSight;
+    public UnityEvent DetectedWithLineOfSight;
+
+    private void Awake()
+    {
+        coroutine = leftRange();
+    }
 
     // Update is called once per frame
     void Update()
@@ -47,6 +48,8 @@ public class DetectionSystem : MonoBehaviour
         {
             LineOfSight();
         }
+
+        if()
         
     }
 
@@ -63,7 +66,7 @@ public class DetectionSystem : MonoBehaviour
                         Debug.Log("Detected " + _tagToDetect + " Tag, LoS not needed.");
                         objectDetected = true;
 
-                        DetectedTagWithoutLineOfSight.Invoke();
+                        DetectedWithoutLineOfSight.Invoke();
 
                         ObjectLeavingRange();
                         
@@ -75,7 +78,7 @@ public class DetectionSystem : MonoBehaviour
                         //LineOfSight();
                         objectDetected = true;
 
-                        DetectedTagWithLineOfSight.Invoke();
+                        DetectedWithLineOfSight.Invoke();
 
                         ObjectLeavingRange();
                     }
@@ -83,13 +86,21 @@ public class DetectionSystem : MonoBehaviour
                 break;
 
             case DetectionMethod.Layer:
-                if (other.gameObject.layer == _layerToDetect)
+                Debug.Log("_layerToDetect.value: " + _layerToDetect.value);
+                Debug.Log("gameObject.layer: " + other.gameObject.layer);
+                Debug.Log("LayerToName: " + LayerMask.LayerToName(3));
+                Debug.Log("NameToLayer: " + LayerMask.NameToLayer("Player"));
+                Debug.Log("GetMask: " + LayerMask.GetMask("Player"));
+                //var _layerName = LayerMask.LayerToName(3);
+                //if (other.gameObject.layer == _layerToDetect.value)
+                //Mathf.Pow(2, other.gameObject.layer)
+                if (Mathf.Pow(2, other.gameObject.layer) == _layerToDetect.value)
                 {
                     if (_lineOfSightRequired == false)
                     {
                         Debug.Log("Detected Player Layer, LoS not needed.");
                         objectDetected = true;
-                        DetectedLayerWithoutLineOfSight.Invoke();
+                        DetectedWithoutLineOfSight.Invoke();
                         ObjectLeavingRange();
                     }
 
@@ -97,7 +108,7 @@ public class DetectionSystem : MonoBehaviour
                     {
                         Debug.Log("Layer, LoS needed.");
                         objectDetected = true;
-                        DetectedLayerWithLineOfSight.Invoke();
+                        DetectedWithLineOfSight.Invoke();
                         ObjectLeavingRange();
                     }
                 }
@@ -110,7 +121,7 @@ public class DetectionSystem : MonoBehaviour
                     {
                         Debug.Log("Detected Player GameObject, LoS not needed.");
                         objectDetected = true;
-                        DetectedGameObjectWithoutLineOfSight.Invoke();
+                        DetectedWithoutLineOfSight.Invoke();
                         ObjectLeavingRange();
                     }
 
@@ -118,7 +129,7 @@ public class DetectionSystem : MonoBehaviour
                     {
                         Debug.Log("GameObject, LoS needed.");
                         objectDetected = true;
-                        DetectedGameObjectWithLineOfSight.Invoke();
+                        DetectedWithLineOfSight.Invoke();
                         ObjectLeavingRange();
                     }
                 }
@@ -127,9 +138,12 @@ public class DetectionSystem : MonoBehaviour
         }
     }
 
+
+    //ADD SWITCH STATEMENTS
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == _tagToDetect || other.gameObject.layer == _layerToDetect.value || other.gameObject == _objectToDetect)
         {
             //Debug.Log("Player Exited Collider.");
             StartCoroutine(coroutine);
@@ -150,6 +164,11 @@ public class DetectionSystem : MonoBehaviour
         yield return new WaitForSeconds(DetectLeaveDuration);
         objectDetected = false;
         Debug.Log("Player Not Detected");
+    }
+
+    public void MoveToPlayer()
+    {
+        Vector3.MoveTowards(gameObject.transform.position, _objectToDetect.transform.position, 2);
     }
 
     public void LineOfSight()
