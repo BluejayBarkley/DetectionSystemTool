@@ -83,7 +83,7 @@ public class DetectionSystem : MonoBehaviour
                     //If line of sight is not required...
                     if (_lineOfSightRequired == false)
                     {
-                        Debug.Log("Detected " + _tagToDetect + " Tag, LoS not needed.");
+                        //Tag entered collider, line of sight not required.
                         //Then the object is detected.
                         objectDetected = true;
 
@@ -95,7 +95,7 @@ public class DetectionSystem : MonoBehaviour
                     //If line of sight is required...
                     if (_lineOfSightRequired == true)
                     {
-                        Debug.Log("Detected " + _tagToDetect + " Tag, LoS needed.");
+                        //Tag entered collider, line of sight required.
                         objectDetected = true;
                         ObjectLeavingRange();
                     }
@@ -109,14 +109,14 @@ public class DetectionSystem : MonoBehaviour
                 {
                     if (_lineOfSightRequired == false)
                     {
-                        Debug.Log("Detected Player Layer, LoS not needed.");
+                        //Layer entered collider, line of sight not required.
                         objectDetected = true;
                         ObjectLeavingRange();
                     }
 
                     if (_lineOfSightRequired == true)
                     {
-                        Debug.Log("Layer, LoS needed.");
+                        //Layer entered collider, line of sight required.
                         objectDetected = true;
                         ObjectLeavingRange();
                     }
@@ -129,14 +129,14 @@ public class DetectionSystem : MonoBehaviour
                 {
                     if (_lineOfSightRequired == false)
                     {
-                        Debug.Log("Detected Player GameObject, LoS not needed.");
+                        //GameObject entered collider, line of sight not required.
                         objectDetected = true;
                         ObjectLeavingRange();
                     }
 
                     if (_lineOfSightRequired == true)
                     {
-                        Debug.Log("GameObject, LoS needed.");
+                        //GameObject entered collider, line of sight required.
                         objectDetected = true;
                         ObjectLeavingRange();
                     }
@@ -156,14 +156,14 @@ public class DetectionSystem : MonoBehaviour
                 {
                     if (_lineOfSightRequired == false)
                     {
-                        Debug.Log("Player Exited Collider. Tag, NLOS.");
+                        //Tag exited collider, line of sight not required.
                         StartCoroutine(coroutine);
 
                     }
 
                     if (_lineOfSightRequired == true)
                     {
-                        Debug.Log("Player Exited Collider. Tag, LOS.");
+                        //Tag exited collider, line of sight required.
                         StartCoroutine(coroutine);
                     }
                 }
@@ -174,13 +174,13 @@ public class DetectionSystem : MonoBehaviour
                 {
                     if (_lineOfSightRequired == false)
                     {
-                        Debug.Log("Player Exited Collider. Layer, NLOS.");
+                        //Layer exited collider, line of sight not required.
                         StartCoroutine(coroutine);
                     }
 
                     if (_lineOfSightRequired == true)
                     {
-                        Debug.Log("Player Exited Collider. Layer, LOS.");
+                        //Layer exited collider, line of sight required.
                         StartCoroutine(coroutine);
                     }
                 }
@@ -191,13 +191,13 @@ public class DetectionSystem : MonoBehaviour
                 {
                     if (_lineOfSightRequired == false)
                     {
-                        Debug.Log("Player Exited Collider. Object, NLOS.");
+                        //Object exited collider, line of sight not required.
                         StartCoroutine(coroutine);
                     }
 
                     if (_lineOfSightRequired == true)
                     {
-                        Debug.Log("Player Exited Collider. Object, LOS.");
+                        //Object exited collider, line of sight required.
                         StartCoroutine(coroutine);
                     }
                 }
@@ -218,7 +218,7 @@ public class DetectionSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(DetectLeaveDuration);
         objectDetected = false;
-        Debug.Log("Player Not Detected");
+        //The object is no longer detected.
     }
 
     public void MoveToObject()
